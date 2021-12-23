@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name='viewport' content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style media="screen">
+    input
+    {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+    h1{
+      color:red;
+    }
+    label {
+	     cursor: pointer;
+	     color: #93ff33;
+	     padding: 10px;
+	     margin: 3px;
+}
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>FILTER APP</h1>
+      <br>
+      <form method='post' action="{{ url_for('filter') }}">
+      <input type="radio" id="cam1" name="camera_source1" value="c1">
+      <label for="cam1" >Front Cam</label>
+      <input type="radio" id="cam2" name="camera_source2" value="c2">
+      <label for="cam2">Back Cam</label><br><br><br>
+        <input type="submit" value="Thug Life" name="Filter 1"/><br><br>
+        <input type="submit" value="The Party" name="Filter 2"/><br><br>
+        <input type="submit" value="Be Swag" name="Filter 3"/><br><br>
+    </form>
+    </body>
+    </center>
+  </body>
+</html>
