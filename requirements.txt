@@ -7,7 +7,7 @@ numpy==1.21.4
 opencv_python==4.5.4.58
 
 
-click==6.7
+click
 enum-compat==0.0.2
 enum34==1.1.6
 eventlet==0.20.0
