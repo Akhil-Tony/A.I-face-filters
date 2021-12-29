@@ -1,6 +1,7 @@
 Flask==2.0.2
+gunicorn==20.1.0
+Jinja2==3.0.3
 imutils==0.5.4
 mediapipe==0.8.9.1
 numpy==1.21.4
 opencv_python==4.5.4.58
-gunicorn
