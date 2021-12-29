@@ -1,16 +1,16 @@
-Flask==2.0.2
-gunicorn==20.1.0
-Jinja2==3.0.3
-imutils==0.5.4
-mediapipe==0.8.9.1
-numpy==1.21.4
-opencv_python==4.5.4.58
+Flask
+gunicorn
+Jinja2
+imutils
+mediapipe
+numpy
+opencv_python
 
 
 click
-enum-compat==0.0.2
-enum34==1.1.6
-eventlet==0.20.0
+enum-compat
+enum34
+eventlet
 Flask-SocketIO
 gevent
 gevent-websocket
