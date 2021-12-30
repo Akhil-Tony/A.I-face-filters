@@ -5,7 +5,7 @@ from flask import request
 from flask import Response
 import time
 #********
-import cv2 #as cv
+import cv2 as cv
 import mediapipe as mp
 import numpy as np
 import imutils
