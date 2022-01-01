@@ -1,6 +1,5 @@
-tp://packages.debian.org/wheezy/all/transmission-common/filelist
+libice6
 libsm6
 libxrender1
 libfontconfig1
-libice6
 libgl1
