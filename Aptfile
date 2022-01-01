@@ -1,4 +1,4 @@
-https://packages.ubuntu.com/impish/amd64/libsm6/filelist
+http://mirrors.kernel.org/ubuntu/pool/main/libs/libsm/libsm6_1.2.3-1build1_amd64.deb
 libsm6
 libxrender1
 libfontconfig1
