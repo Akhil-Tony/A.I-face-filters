@@ -16,7 +16,7 @@ matplotlib==3.5.1
 mediapipe==0.8.9.1
 numpy==1.21.5
 opencv-contrib-python==4.5.5.62
-opencv-python-headless==4.2.0.32
+opencv-python-headless
 packaging==21.3
 Pillow==8.4.0
 protobuf==3.19.1
