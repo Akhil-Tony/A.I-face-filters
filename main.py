@@ -5,13 +5,14 @@ from flask import request
 from flask import Response
 import time
 #********
+import warnings
+warnings.filterwarnings('ignore')
 import cv2 as cv
 import mediapipe as mp
 import numpy as np
 import imutils
 
-
-SRC = 0
+SRC = 1
 
 camera = cv.VideoCapture(SRC)
 app = Flask(__name__)
@@ -103,9 +104,12 @@ def thug_life(image):
         _,glass_mask = cv.threshold(glass_grey,200,255,cv.THRESH_BINARY_INV)
         glass_mask_inv = cv.bitwise_not(glass_mask)
         #**************************creating roi fg and bg*************
-        glass_bg = cv.bitwise_and(glass_roi,glass_roi,mask=glass_mask_inv)
-        glass_fg = cv.bitwise_and(glass_resized,glass_resized,mask=glass_mask)
-        glass_filled = cv.add(glass_bg,glass_fg)
+        try:
+            glass_bg = cv.bitwise_and(glass_roi,glass_roi,mask=glass_mask_inv)
+            glass_fg = cv.bitwise_and(glass_resized,glass_resized,mask=glass_mask)
+            glass_filled = cv.add(glass_bg,glass_fg)
+        except:
+            pass
         #######################J O I N T###############################
         left_lip = landmarks[1][0][0][48]
         right_lip = landmarks[1][0][0][54]
@@ -121,12 +125,19 @@ def thug_life(image):
         _,j_mask = cv.threshold(j_grey,1,255,cv.THRESH_BINARY)
         j_mask_inv = cv.bitwise_not(j_mask)
         #******bg and fg
-        j_bg = cv.bitwise_and(j_roi,j_roi,mask=j_mask_inv)
-        j_filled = cv.add(j_bg,joint_resized)
+        try:
+            j_bg = cv.bitwise_and(j_roi,j_roi,mask=j_mask_inv)
+            j_filled = cv.add(j_bg,joint_resized)
+        except:
+            pass
         #**********************Adding Filter*******************
-        image[int(left_eye_brw[1])+3:int(left_eye_brw[1])+glass_height+3,int(left_eye_brw[0])+3:int(left_eye_brw[0])+glass_width+3] = glass_filled
-        image[int(left_lip[1]):int(left_lip[1])+j_height,int(left_lip[0])-j_width+20:int(left_lip[0])+20] = j_filled
+        try:
+            image[int(left_eye_brw[1])+3:int(left_eye_brw[1])+glass_height+3,int(left_eye_brw[0])+3:int(left_eye_brw[0])+glass_width+3] = glass_filled
+            image[int(left_lip[1]):int(left_lip[1])+j_height,int(left_lip[0])-j_width+20:int(left_lip[0])+20] = j_filled
+        except:
+            pass
     return image
+
 def glass_filter(image):
     grey_img = cv.cvtColor(image,cv.COLOR_BGR2GRAY)
     rgb_img = cv.cvtColor(image,cv.COLOR_BGR2RGB)
@@ -158,8 +169,11 @@ def glass_filter(image):
         _,hat_mask = cv.threshold(hat_grey,10,255,cv.THRESH_BINARY)
         hat_mask_inv = cv.bitwise_not(hat_mask)
         #******************creating fg and bg******************
-        hat_bg = cv.bitwise_and(hat_roi,hat_roi,mask=hat_mask_inv)
-        hat_filled = cv.add(hat_bg,hat_resized)
+        try:
+            hat_bg = cv.bitwise_and(hat_roi,hat_roi,mask=hat_mask_inv)
+            hat_filled = cv.add(hat_bg,hat_resized)
+        except:
+            pass
         ################# G L A S S ##############################################
         #*************resizing filter according to face****************
         left_eye_brw = np.mean(landmarks[1][0][0][17:19][:,0])-4,np.mean(landmarks[1][0][0][17:19][:,1])
@@ -177,9 +191,12 @@ def glass_filter(image):
         _,glass_mask = cv.threshold(glass_grey,1,255,cv.THRESH_BINARY_INV)
         _,glass_mask_inv = cv.threshold(glass_grey,1,255,cv.THRESH_BINARY)
         #**************************creating roi fg and bg*************
-        glass_bg = cv.bitwise_and(glass_roi,glass_roi,mask=glass_mask)
-        glass_fg = cv.bitwise_and(glass_resized,glass_resized,mask=glass_mask_inv)
-        t_glass_filled = cv.add(glass_bg,glass_fg)
+        try:
+            glass_bg = cv.bitwise_and(glass_roi,glass_roi,mask=glass_mask)
+            glass_fg = cv.bitwise_and(glass_resized,glass_resized,mask=glass_mask_inv)
+            t_glass_filled = cv.add(glass_bg,glass_fg)
+        except:
+            pass
         ##################### W H I S T L E ########################################
         left_lip = landmarks[1][0][0][48]
         right_lip = landmarks[1][0][0][54]
@@ -234,9 +251,12 @@ def swag(image):
         #*********************finding region of interest***************
         glass_roi = image[int(left_eye_brw[1])-5:int(left_eye_brw[1])+glass_height-5,int(left_eye_brw[0])+3:int(left_eye_brw[0])+glass_width+3]
         #**********************Creating Mask for filter****************
-        glass_grey = cv.cvtColor(glass_resized,cv.COLOR_BGR2GRAY)
-        _,glass_mask = cv.threshold(glass_grey,10,255,cv.THRESH_BINARY)
-        glass_mask_inv = cv.bitwise_not(glass_mask)
+        try:
+            glass_grey = cv.cvtColor(glass_resized,cv.COLOR_BGR2GRAY)
+            _,glass_mask = cv.threshold(glass_grey,10,255,cv.THRESH_BINARY)
+            glass_mask_inv = cv.bitwise_not(glass_mask)
+        except:
+            pass
         #************Adding some color*******************************
         canny = cv.Canny(glass_grey,20,170)
         contours,_ = cv.findContours(canny,cv.RETR_LIST,cv.CHAIN_APPROX_NONE)
@@ -245,9 +265,12 @@ def swag(image):
         cont = np.array(contours)[::skipper]
         glass_resized = cv.drawContours(glass_resized,cont,-1,color,2)
         #**************************creating roi fg and bg*************
-        glass_bg = cv.bitwise_and(glass_roi,glass_roi,mask=glass_mask_inv)
-        glass_fg = cv.bitwise_and(glass_resized,glass_resized,mask=glass_mask)
-        glass_filled = cv.add(glass_bg,glass_fg)
+        try:
+            glass_bg = cv.bitwise_and(glass_roi,glass_roi,mask=glass_mask_inv)
+            glass_fg = cv.bitwise_and(glass_resized,glass_resized,mask=glass_mask)
+            glass_filled = cv.add(glass_bg,glass_fg)
+        except:
+            pass
         ##################### Meesha ##################
         #******* resizing the filter*********
         left_lip = landmarks[1][0][0][48]
@@ -263,11 +286,17 @@ def swag(image):
         _,m_mask = cv.threshold(m_grey,10,255,cv.THRESH_BINARY)
         m_mask_inv = cv.bitwise_not(m_mask)
         #******bg and fg
-        m_bg = cv.bitwise_and(m_roi,m_roi,mask=m_mask_inv)
-        m_filled = cv.add(m_bg,moust_resized)
+        try:
+            m_bg = cv.bitwise_and(m_roi,m_roi,mask=m_mask_inv)
+            m_filled = cv.add(m_bg,moust_resized)
+        except:
+            pass
         ############ADDING FILTERS##################################3
-        image[int(left_eye_brw[1])-5:int(left_eye_brw[1])+glass_height-5,int(left_eye_brw[0])+3:int(left_eye_brw[0])+glass_width+3]=glass_filled
-        image[int(left_lip[1])-m_height:int(left_lip[1]),int(left_lip[0]):int(left_lip[0])+m_width] = m_filled
+        try:
+            image[int(left_eye_brw[1])-5:int(left_eye_brw[1])+glass_height-5,int(left_eye_brw[0])+3:int(left_eye_brw[0])+glass_width+3]=glass_filled
+            image[int(left_lip[1])-m_height:int(left_lip[1]),int(left_lip[0]):int(left_lip[0])+m_width] = m_filled
+        except:
+            pass
     return image    
 #**************************************************************
 filters = [thug_life,glass_filter,swag]
@@ -299,7 +328,7 @@ def generate_frames():
             frame = filters[filter_no](frame)
             ctime = time.time()
             fps = str( int(1/(ctime-ptime)) )
-            frame = cv.putText(frame,'fps:'+fps,(10,40),cv.FONT_HERSHEY_COMPLEX,1,(0,233,0),1)
+            frame = cv.putText(frame,'fps:'+fps,(10,40),cv.FONT_HERSHEY_COMPLEX,1,(244,0,0),1)
             ptime = ctime
             ret,buffer = cv.imencode('.jpg',frame)
             frame = buffer.tobytes()
@@ -312,6 +341,5 @@ def generate_frames():
 def video_feed():
     return Response(generate_frames(),mimetype='multipart/x-mixed-replace; boundary=frame')
 
-
 if __name__ == '__main__':
-    app.run(debug = False)
+    app.run(debug = True)
