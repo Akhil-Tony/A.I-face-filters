@@ -8,4 +8,4 @@
   <li>Web Development        : Flask</li>
 </ul>
 
-![hippo](https://github.com/Akhil-Tony/CameraApp/raw/master/GIF-220214_130905.gif)
+![hippo](https://github.com/Akhil-Tony/CameraApp/blob/master/GIF-220214_140030%5B1%5D.gif)
