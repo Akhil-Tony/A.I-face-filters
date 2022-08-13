@@ -1,3 +1,4 @@
+![](https://github.com/Akhil-Tony/CameraApp/blob/master/GIF-220214_143709%5B1%5D.gif)
 <h1>Camera Web App to click pictures with A.I face filters</h1>
 <h2>FrameWorks Used</h2>
 <ul>
@@ -8,4 +9,3 @@
   <li>Web Development        : Flask</li>
 </ul>
 
-![hippo](https://github.com/Akhil-Tony/CameraApp/blob/master/GIF-220214_143709%5B1%5D.gif)
