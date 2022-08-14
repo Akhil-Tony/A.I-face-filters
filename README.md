@@ -1,4 +1,4 @@
-<h1 align='center'>A.I Face Filter :clown_face: </h1>
+<h1 >A.I Face Filter :clown_face: </h1>
 
 ![](https://github.com/Akhil-Tony/CameraApp/blob/master/GIF-220214_143709%5B1%5D.gif)
 
