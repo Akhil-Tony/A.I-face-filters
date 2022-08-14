@@ -1,7 +1,9 @@
 ![](https://github.com/Akhil-Tony/CameraApp/blob/master/GIF-220214_143709%5B1%5D.gif)
 <h1>working</h1>
 Used FaceLandmark detection model extracted face keypoints and used image processing to build A.I filters
-<h2>FrameWorks Used</h2>
+
+## :star: FrameWorks Used
+
 <ul>
   <li>Computer Vision        : OpenCV</li>
   <li>Web Development        : Flask</li>
