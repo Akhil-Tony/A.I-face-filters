@@ -10,7 +10,7 @@
 <ul>
   <li>Computer Vision        : OpenCV</li>
   <li>Web Development        : Flask</li>
-  <li>FaceLandmark Detection : Mediapipe</li>
+  <li>FaceLandmark Detection : Mediapipe and CV2</li>
   <li>Data Manipulation      : Numpy</li>
   <li>Web Development        : Flask</li>
 </ul>
